@@ -12,7 +12,7 @@ ARG healthcheck_url
 
 ARG client_upgrade_server
 
-ARG cert_server_URL
+#ARG cert_server_URL
 
 ENV client_version_env=${client_version}
 
@@ -24,7 +24,7 @@ ENV client_upgrade_server_env=${client_upgrade_server}
 
 ENV client_repo_env=${client_repo_url}
 
-ENV client_certificate_env=${client_certificate}
+#ENV client_certificate_env=${client_certificate}
 
 ENV artifactory_url_env=${artifactory_url}
 
