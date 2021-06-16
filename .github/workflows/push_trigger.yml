@@ -60,7 +60,7 @@ jobs:
     - name: Build with Maven
       run: |
         cd registration
-        mvn clean install -U -s $GITHUB_WORKSPACE/settings.xml -DskipTests --file pom.xml
+        mvn clean install -U -s $GITHUB_WORKSPACE/settings.xml -DskipTests -Dgpg.skip --file pom.xml
 
     - name: Get version info from pom
       id: getPomVersion
@@ -93,14 +93,14 @@ jobs:
     - name: Publish the maven package
       run: |
         cd registration
-        mvn deploy -DskipTests -DaltDeploymentRepository=ossrh::default::${{ secrets.RELEASE_URL }} -s $GITHUB_WORKSPACE/settings.xml -f pom.xml
+        mvn deploy -Dgpg.skip -DskipTests -DaltDeploymentRepository=ossrh::default::${{ secrets.RELEASE_URL }} -s $GITHUB_WORKSPACE/settings.xml -f pom.xml
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         GPG_TTY: $(tty)
     - name: Analyze with SonarCloud
       run: |
         cd registration
-        mvn clean -B verify sonar:sonar -Dsonar.projectKey=${{ secrets.PROJECT_KEY }} -Dsonar.organization=${{ secrets.ORG_KEY }} -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        mvn clean -B verify sonar:sonar  -Dgpg.skip -Dsonar.projectKey=${{ secrets.PROJECT_KEY }} -Dsonar.organization=${{ secrets.ORG_KEY }} -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
