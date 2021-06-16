@@ -6,9 +6,7 @@ on:
     types: [closed]
   push:
     branches:
-      - master
-      - 1.*
-      - develop
+      - temp_v3_deployment
   
 jobs:
   
