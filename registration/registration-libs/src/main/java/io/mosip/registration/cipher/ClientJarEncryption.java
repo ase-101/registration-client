@@ -130,12 +130,12 @@ public class ClientJarEncryption {
 					readDirectoryToByteArray(MOSIP_JRE, new File(args[8]), fileNameByBytes);
 
 					// Certificate file
-					File mosipCertificateFile = new File(args[4]);
+					/*File mosipCertificateFile = new File(args[4]);
 
 					if (mosipCertificateFile.exists()) {
 						fileNameByBytes.put(MOSIP_CER + SLASH + mosipCertificateFile.getName(),
 								FileUtils.readFileToByteArray(mosipCertificateFile));
-					}
+					}*/
 
 					// Add mosip-Version to mosip-application.properties file
 					addProperties(new File(args[10]), args[2]);
